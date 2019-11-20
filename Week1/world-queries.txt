@@ -1,0 +1,19 @@
+SELECT Name FROM city WHERE CountryCode='NLD' ;
+SELECT Population FROM city WHERE Name="Rotterdam";
+SELECT Name FROM country where Continent="North America";
+SELECT Name, SurfaceArea  FROM country ORDER BY SurfaceArea DESC Limit 10  ;
+SELECT Name,Population FROM City ORDER BY Population DESC LIMIT 10;
+SELECT Name,Population FROM country WHERE Name LIKE "P%" ORDER BY Population DESC LIMIT 3;
+SELECT Continent,sum(Population) FROM country where Continent="Asia";
+CREATE TABLE RegLang AS
+SELECT country.Code, country.Name, country.Region, countrylanguage.Language 
+FROM country
+INNER JOIN countrylanguage ON country.Code=countrylanguage.CountryCode;
+SELECT * FROM RegLang;
+SELECT Language,Name FROM RegLang WHERE Region="South America";
+CREATE TABLE CCL AS
+SELECT city.Name, city.CountryCode , RegLang.Language
+FROM city
+INNER JOIN RegLang ON city.CountryCode=RegLang.Code;
+SELECT *FROM CCL;
+SELECT Name,Language FROM CCL WHERE Name="Barcelona";
